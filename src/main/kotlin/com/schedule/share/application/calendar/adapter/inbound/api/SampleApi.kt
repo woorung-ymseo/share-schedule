@@ -12,5 +12,5 @@ class SampleApi(
 ) {
 
     @GetMapping("/test")
-    fun test(): String = sampleQuery.get()
+    fun test(): String = sampleQuery.get().plus(" controller")
 }
