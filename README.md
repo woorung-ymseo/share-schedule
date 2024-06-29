@@ -1,5 +1,12 @@
 # share-schedule
 
+## 개발관련
+
+- github : https://github.com/woorung-ymseo/share-schedule/
+- swagger(local) : http://localhost:8080/swagger-ui/index.html
+
+---
+
 ## 패키지 구조
 ```text
 share-schedule
@@ -68,3 +75,4 @@ ex) feature/share-20240629112315
 
 eX) [feat] feature/share-20240629112315 | 테스트
 ```
+
