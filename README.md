@@ -49,7 +49,7 @@ com.schedule.share
 ### 로컬 rdb (mysql) 환경 설정
 
 ```shell
-docker-dompose up -d
+docker-compose up -d
 ```
 
 ---
