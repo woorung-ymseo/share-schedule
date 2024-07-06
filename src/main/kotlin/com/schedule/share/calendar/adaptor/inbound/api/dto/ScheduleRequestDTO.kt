@@ -10,7 +10,7 @@ class ScheduleRequestDTO {
 
     data class Schedule(
         val title: String,
-        val isAllDay: Boolean = false,
+        val isAllday: Boolean = false,
         val startDatetime: LocalDateTime,
         val endDatetime: LocalDateTime,
         val content: String? = null,
