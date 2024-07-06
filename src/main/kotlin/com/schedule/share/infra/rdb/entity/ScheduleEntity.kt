@@ -23,7 +23,7 @@ open class ScheduleEntity(
     calendarId: Long,
     userId: Long,
     title: String,
-    isAllDay: Boolean = false,
+    isAllday: Boolean = false,
     startDatetime: LocalDateTime,
     endDatetime: LocalDateTime,
     content: String? = null,
@@ -46,8 +46,7 @@ open class ScheduleEntity(
     open var title: String = title
         protected set
 
-    @Column(name = "all_day", nullable = false)
-    open var isAllDay: Boolean = isAllDay
+    open var isAllday: Boolean = isAllday
         protected set
 
     open var startDatetime: LocalDateTime = startDatetime
