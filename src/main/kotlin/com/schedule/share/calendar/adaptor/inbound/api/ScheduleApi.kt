@@ -32,7 +32,7 @@ class ScheduleApi(
         scheduleQuery.get(id = id).toResponse()
 
     @Operation(summary = "스케쥴 조회 API", description = "스토어 조회 API")
-    @GetMapping
+    @GetMapping("/schedules")
     fun getList(): List<ScheduleResponseDTO.Response> =
         scheduleQuery.list().map { it.toResponse() }
 
