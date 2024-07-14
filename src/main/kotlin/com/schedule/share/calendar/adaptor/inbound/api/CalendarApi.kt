@@ -54,4 +54,12 @@ class CalendarApi(
             )
         )
     }
+
+    @Operation(summary = "캘린더 삭제 API", description = "캘린더 삭제 API")
+    @DeleteMapping("/{id}")
+    fun put(
+        @PathVariable id: Long,
+    ) {
+        calendarCommand.delete(id = id)
+    }
 }

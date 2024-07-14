@@ -26,5 +26,6 @@ fun CalendarVO.Calendar.toResponse(): CalendarResponseDTO.Response =
         image = image,
         createdBy = createdBy,
         createdAt = createdAt!!,
-        modifiedAt = modifiedAt!!
+        modifiedAt = modifiedAt!!,
+        isDeleted = isDeleted
     )

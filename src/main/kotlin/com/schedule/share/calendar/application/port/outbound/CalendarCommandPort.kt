@@ -6,4 +6,6 @@ interface CalendarCommandPort {
     fun create(param: Calendar): Long
 
     fun update(param: Calendar)
+
+    fun delete(id: Long)
 }

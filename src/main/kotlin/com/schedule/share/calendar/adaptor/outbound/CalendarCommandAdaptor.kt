@@ -17,4 +17,11 @@ class CalendarCommandAdaptor(
     override fun update(param: Calendar) {
         calendarRepository.save(param.toEntity())
     }
+
+    override fun delete(id: Long) {
+        calendarRepository.findById(id).orElseThrow().delete()
+            .let {
+                calendarRepository.save(it)
+            }
+    }
 }

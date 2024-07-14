@@ -26,6 +26,7 @@ fun CalendarEntity.toDomain(): Calendar =
         createdBy = createdBy,
         createdAt = createdAt!!,
         modifiedAt = modifiedAt!!,
+        isDeleted = deletedAt != null,
     )
 
 fun Calendar.toEntity(): CalendarEntity =
@@ -49,4 +50,5 @@ fun Calendar.toVO(): CalendarVO.Calendar =
         createdBy = createdBy,
         createdAt = createdAt,
         modifiedAt = modifiedAt,
+        isDeleted = isDeleted,
     )

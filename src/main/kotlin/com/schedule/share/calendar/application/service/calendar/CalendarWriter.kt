@@ -19,6 +19,6 @@ class CalendarWriter(
     }
 
     override fun delete(id: Long) {
-        TODO("Not yet implemented")
+        calendarCommandPort.delete(id)
     }
 }

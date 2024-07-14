@@ -12,6 +12,7 @@ class CalendarResponseDTO {
         val image: ByteArray? = null,
         val createdBy: Long? = null,
         val createdAt: LocalDateTime? = null,
-        val modifiedAt: LocalDateTime? = null
+        val modifiedAt: LocalDateTime? = null,
+        val isDeleted: Boolean = false
     )
 }

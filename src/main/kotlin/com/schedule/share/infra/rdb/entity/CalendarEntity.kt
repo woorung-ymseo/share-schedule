@@ -18,7 +18,8 @@ open class CalendarEntity(
     image: ByteArray? = null,
     createdBy: Long? = null,
     createdAt: LocalDateTime? = DateUtil.now(),
-    modifiedAt: LocalDateTime? = DateUtil.now()
+    modifiedAt: LocalDateTime? = DateUtil.now(),
+    deletedAt: LocalDateTime? = null
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,4 +48,12 @@ open class CalendarEntity(
     @LastModifiedDate
     open var modifiedAt: LocalDateTime? = modifiedAt
         protected set
+
+    open var deletedAt: LocalDateTime? = deletedAt
+
+    fun delete(): CalendarEntity {
+        this.deletedAt = DateUtil.now()
+
+        return this
+    }
 }
