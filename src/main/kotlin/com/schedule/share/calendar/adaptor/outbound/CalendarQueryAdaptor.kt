@@ -11,7 +11,7 @@ class CalendarQueryAdaptor(
     private val calendarRepository: CalendarRepository
 ) : CalendarQueryPort {
     override fun findAll(): List<Calendar> {
-        return calendarRepository.findAll()
+        return calendarRepository.findAllByDeletedAtIsNull()
             .map { it.toDomain() }
     }
 
