@@ -35,7 +35,7 @@ class ScheduleApi(
     )
 
     @Operation(summary = "스케쥴 조회 API", description = "스토어 조회 API")
-    @GetMapping("/schedules")
+    @GetMapping
     fun getList(
         @RequestParam(defaultValue = "0") limit: Int,
         @RequestParam(defaultValue = "0") offset: Int,
@@ -51,7 +51,7 @@ class ScheduleApi(
     }
 
     @Operation(summary = "스케쥴 등록 API", description = "스토어 등록 API")
-    @PostMapping("/schedules/calendars/{calendarId}")
+    @PostMapping("/calendars/{calendarId}")
     fun post(
         @PathVariable calendarId: Long,
         @RequestBody body: ScheduleRequestDTO.Schedule,
