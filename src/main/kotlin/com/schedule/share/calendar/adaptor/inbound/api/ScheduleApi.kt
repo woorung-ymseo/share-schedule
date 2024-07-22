@@ -18,18 +18,17 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/calendars")
+@RequestMapping("/schedules")
 class ScheduleApi(
     private val scheduleQuery: ScheduleQuery,
     private val scheduleCommand: ScheduleCommand,
     private val scheduleService: ScheduleService,
 ) {
     @Operation(summary = "스케줄 단건 조회 API - 커밋 테스트", description = "스케줄 단건 조회 API")
-    @GetMapping("/schedules/{id}")
+    @GetMapping("/{id}")
     fun get(
         @PathVariable id: Long,
-    ): ScheduleResponseDTO.Response =
-        scheduleQuery.get(id = id).toResponse()
+    ): ScheduleResponseDTO.Response = scheduleQuery.get(id = id).toResonse()
 
     @Operation(summary = "스케쥴 조회 API", description = "스토어 조회 API")
     @GetMapping("/schedules")
@@ -37,7 +36,7 @@ class ScheduleApi(
         scheduleQuery.list().map { it.toResponse() }
 
     @Operation(summary = "스케쥴 등록 API", description = "스토어 등록 API")
-    @PostMapping("/{calendarId}/schedules")
+    @PostMapping("/schedules/calendars/{calendarId}")
     fun post(
         @PathVariable calendarId: Long,
         @RequestBody body: ScheduleRequestDTO.Schedule,
@@ -49,7 +48,7 @@ class ScheduleApi(
     )
 
     @Operation(summary = "스케쥴 수정 API", description = "스토어 수정 API")
-    @PutMapping("/schedules/{id}")
+    @PutMapping("/{id}")
     fun put(
         @PathVariable id: Long,
         @PathVariable calendarId: Long,
@@ -64,8 +63,8 @@ class ScheduleApi(
         )
     }
 
-    @Operation(summary = "스케쥴 수정 API", description = "스토어 수정 API")
-    @DeleteMapping("/schedules/{id}")
+    @Operation(summary = "스케쥴 삭제 API", description = "스토어 삭제 API")
+    @DeleteMapping("/{id}")
     fun put(
         @PathVariable id: Long,
     ) {
