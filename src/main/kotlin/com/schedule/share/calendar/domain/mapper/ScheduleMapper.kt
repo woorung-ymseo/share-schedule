@@ -50,7 +50,7 @@ fun Schedule.toEntity(): ScheduleEntity =
 
 
 fun Schedule.toVO(): ScheduleVO.Schedule =
-    com.schedule.share.calendar.application.service.schedule.vo.ScheduleVO.Schedule(
+    ScheduleVO.Schedule(
         id = id,
         calendarId = calendarId,
         userId = userId,

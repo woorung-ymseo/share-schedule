@@ -1,7 +1,14 @@
 package com.schedule.share.common.model
 
+import com.fasterxml.jackson.annotation.JsonInclude
+import com.schedule.share.common.exception.AbstractException
+import org.apache.commons.lang3.StringUtils
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 class ResponseModel<T>(
     val data: T? = null,
+    val code: String? = null,
+    val message: String? = null,
     val pagination: Pagination? = null,
 
     ) {
@@ -18,6 +25,13 @@ class ResponseModel<T>(
                 limit = limit,
                 offset = offset,
             ).calc()
+        )
+
+        fun of(
+            exception: AbstractException
+        ) = ResponseModel<Any>(
+            code = exception.code.code,
+            message = if (StringUtils.isBlank(exception.message)) exception.message else exception.message,
         )
     }
 
