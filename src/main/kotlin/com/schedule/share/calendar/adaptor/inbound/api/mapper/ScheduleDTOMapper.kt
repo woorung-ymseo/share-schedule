@@ -21,7 +21,7 @@ fun ScheduleRequestDTO.Schedule.toVO(
 
 
 fun ScheduleVO.Schedule.toResponse(): ScheduleResponseDTO.Response =
-    com.schedule.share.calendar.adaptor.inbound.api.dto.ScheduleResponseDTO.Response(
+    ScheduleResponseDTO.Response(
         id = id!!,
         calendarId = calendarId,
         userId = userId,
