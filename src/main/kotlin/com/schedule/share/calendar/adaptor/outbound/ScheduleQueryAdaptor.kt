@@ -3,6 +3,7 @@ package com.schedule.share.calendar.adaptor.outbound
 import com.schedule.share.calendar.application.port.outbound.ScheduleQueryPort
 import com.schedule.share.calendar.domain.Schedule
 import com.schedule.share.calendar.domain.mapper.toDomain
+import com.schedule.share.common.exception.Common404Exception
 import com.schedule.share.infra.rdb.repository.ScheduleRepository
 import org.springframework.stereotype.Component
 
@@ -17,7 +18,7 @@ class ScheduleQueryAdaptor(
 
     override fun findById(id: Long): Schedule {
         return scheduleRepository.findById(id)
-            .orElseThrow()
+            .orElseThrow { throw Common404Exception() }
             .toDomain()
     }
 }

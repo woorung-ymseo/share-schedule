@@ -26,7 +26,7 @@ class ScheduleApi(
     private val scheduleCommand: ScheduleCommand,
     private val scheduleService: ScheduleService,
 ) {
-    @Operation(summary = "스케줄 단건 조회 API - 커밋 테스트", description = "스케줄 단건 조회 API")
+    @Operation(summary = "스케줄 단건 조회 API", description = "스케줄 단건 조회 API")
     @GetMapping("/{id}")
     fun get(
         @PathVariable id: Long,
