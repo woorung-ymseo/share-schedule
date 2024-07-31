@@ -2,10 +2,12 @@ package com.schedule.share.calendar.adaptor.inbound.api
 
 import com.schedule.share.calendar.adaptor.inbound.api.dto.CalendarRequestDTO
 import com.schedule.share.calendar.adaptor.inbound.api.dto.CalendarResponseDTO
+import com.schedule.share.calendar.adaptor.inbound.api.dto.ScheduleResponseDTO
 import com.schedule.share.calendar.adaptor.inbound.api.mapper.toResponse
 import com.schedule.share.calendar.adaptor.inbound.api.mapper.toVO
 import com.schedule.share.calendar.application.port.inbound.CalendarCommand
 import com.schedule.share.calendar.application.port.inbound.CalendarQuery
+import com.schedule.share.common.model.ResponseModel
 import io.swagger.v3.oas.annotations.Operation
 import org.springframework.web.bind.annotation.*
 
@@ -19,23 +21,38 @@ class CalendarApi(
     @GetMapping("/{id}")
     fun get(
         @PathVariable id: Long,
-    ): CalendarResponseDTO.Response =
-        calendarQuery.get(id = id).toResponse()
+    ): ResponseModel<CalendarResponseDTO.Response> = ResponseModel.of(
+        data = calendarQuery.get(id = id).toResponse()
+    )
 
     @Operation(summary = "캘린더 조회 API", description = "캘린더 조회 API")
     @GetMapping
-    fun getList(): List<CalendarResponseDTO.Response> =
-        calendarQuery.list().map { it.toResponse() }
+    fun getList(
+        @RequestParam(defaultValue = "0") limit: Int,
+        @RequestParam(defaultValue = "0") offset: Int,
+        @RequestParam(required = false) isPublic: Boolean,
+    ): ResponseModel<List<CalendarResponseDTO.Response>> {
+        val response = calendarQuery.list().map { it.toResponse() }
+
+        return ResponseModel.of(
+            data = response,
+            total = response.size.toLong(),
+            offset = offset,
+            limit = limit,
+        )
+    }
 
     @Operation(summary = "캘린더 등록 API", description = "캘린더 등록 API")
     @PostMapping
     fun post(
         @RequestBody body: CalendarRequestDTO.Calendar,
         //@RequestPart(required = false) image: MultipartFile
-    ): Long = calendarCommand.create(
-        param = body.toVO(
-            createdBy = 1L,
-            image = byteArrayOf()
+    ): ResponseModel<Long> = ResponseModel(
+        data = calendarCommand.create(
+            param = body.toVO(
+                createdBy = 1L,
+                image = byteArrayOf()
+            )
         )
     )
 
